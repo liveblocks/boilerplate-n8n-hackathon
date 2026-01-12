@@ -4,6 +4,7 @@ import { Inter } from "next/font/google";
 import "@liveblocks/react-ui/styles.css";
 import "@liveblocks/react-tiptap/styles.css";
 import { Providers } from "../components/providers";
+import { Header } from "../components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -33,7 +34,10 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-muted text-[14px]`}>
-        <Providers>{children}</Providers>
+        <Providers>
+          <Header />
+          {children}
+        </Providers>
       </body>
     </html>
   );

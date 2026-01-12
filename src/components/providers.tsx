@@ -2,11 +2,25 @@
 
 import { LiveblocksProvider } from "@liveblocks/react/suspense";
 import { ReactNode } from "react";
+import { getCurrentUser } from "@/lib/user";
 
 export function Providers({ children }: { children: ReactNode }) {
   return (
     <LiveblocksProvider
-      authEndpoint="/api/liveblocks-auth"
+      authEndpoint={async (room) => {
+        // Use localStorage as a demo login system
+        const userId = getCurrentUser();
+
+        const response = await fetch("/api/liveblocks-auth", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ room, userId }),
+        });
+
+        return await response.json();
+      }}
       // Get users' info from their ID
       resolveUsers={async ({ userIds }) => {
         const searchParams = new URLSearchParams(

@@ -1,12 +1,21 @@
 import { Liveblocks } from "@liveblocks/node";
-import { getRandomUser } from "@/app/api/database";
+import { getUser } from "@/app/api/database";
 
 const liveblocks = new Liveblocks({
   secret: process.env.LIVEBLOCKS_SECRET_KEY as string,
 });
 
 export async function POST(request: Request) {
-  const user = getRandomUser();
+  const { room, userId } = await request.json();
+
+  const user = getUser(userId);
+
+  if (!user) {
+    return new Response(
+      JSON.stringify({ error: "forbidden", reason: "User not found" }),
+      { status: 404 }
+    );
+  }
 
   const session = liveblocks.prepareSession(
     user.id,
@@ -20,7 +29,6 @@ export async function POST(request: Request) {
    * is a valid user by validating the cookies or authentication headers
    * and that it has access to the requested room.
    */
-  const { room } = await request.json();
   session.allow(room, session.FULL_ACCESS);
 
   const { status, body } = await session.authorize();
