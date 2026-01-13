@@ -10,6 +10,7 @@ export function Providers({ children }: { children: ReactNode }) {
     <>
       <Toaster />
       <LiveblocksProvider
+        throttle={16}
         authEndpoint={async (room) => {
           // Use localStorage as a demo login system
           const userId = getCurrentUser();

@@ -20,6 +20,7 @@ import { Icon } from "@liveblocks/react-ui";
 import { Placeholder } from "@tiptap/extensions";
 import { Header } from "@/components/header";
 import { toast } from "sonner";
+import "./text-editor.css";
 
 export default function Page() {
   return (

@@ -3,6 +3,7 @@
 import { ReactNode } from "react";
 import { useParams } from "next/navigation";
 import { RoomProvider } from "@liveblocks/react";
+import { LiveMap } from "@liveblocks/client";
 
 export default function Room({ children }: { children: ReactNode }) {
   const { roomId } = useParams();
@@ -10,8 +11,9 @@ export default function Room({ children }: { children: ReactNode }) {
   return (
     <RoomProvider
       id={roomId as string}
-      initialPresence={{}}
-      initialStorage={{}}
+      // Initial values used by tldraw
+      initialPresence={{ presence: undefined }}
+      initialStorage={{ records: new LiveMap() }}
     >
       {children}
     </RoomProvider>

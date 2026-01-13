@@ -1,14 +1,25 @@
+import { LiveMap } from "@liveblocks/core";
+
 declare global {
   interface Liveblocks {
+    // Each user's Presence, for room.getPresence, room.subscribe("others"), etc.
+    Presence: {
+      presence: any; // Used by tldraw
+    };
+
+    // Each user's Storage, for room.getStorage, room.subscribe("storage"), etc.
+    Storage: {
+      records: LiveMap<string, any>; // Used by tldraw
+    };
+
+    // Custom user info set when authenticating with a secret key
     UserMeta: {
-      id: string;
+      id: string; // Accessible through `user.id`
       info: {
         name: string;
-        avatar: string;
         color: string;
-      };
+        avatar: string;
+      }; // Accessible through `user.info`
     };
   }
 }
-
-export {};
