@@ -1,6 +1,7 @@
 import { WebhookHandler } from "@liveblocks/node";
 import { Liveblocks as LiveblocksNode } from "@liveblocks/node";
 import { handleCommentCreated } from "./handleCommentCreated";
+import { handleTextEditorUpdate } from "./handleTextEditorUpdate";
 
 // Add your webhook secret key from a project's webhooks dashboard
 const webhookHandler = new WebhookHandler(
@@ -32,6 +33,11 @@ export async function POST(request: Request) {
     // When a new comment has been created
     if (event.type === "commentCreated") {
       return await handleCommentCreated(event);
+    }
+
+    // When the text editor content is edited
+    if (event.type === "ydocUpdated") {
+      return await handleTextEditorUpdate(event);
     }
   } catch (err) {
     console.error(err);

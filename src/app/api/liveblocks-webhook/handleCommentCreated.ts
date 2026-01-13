@@ -2,13 +2,14 @@ import {
   CommentBody,
   CommentCreatedEvent,
   getMentionsFromCommentBody,
+  stringifyCommentBody,
 } from "@liveblocks/node";
 import { liveblocks } from "./route";
-import { AI_USER } from "../database";
+import { AI_USER, getRandomUser } from "../database";
 
+// Triggers immediately after a comment is created
 export async function handleCommentCreated(event: CommentCreatedEvent) {
-  console.log("CommentCreated:", event.data.commentId);
-  // console.log(event);
+  console.log("CommentCreatedEvent");
 
   const { roomId, threadId, commentId } = event.data;
 
@@ -17,7 +18,6 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
 
   if (!comment.body || comment.userId === AI_USER.id) {
     // Comment has been deleted, or was created by AI, ignore
-    console.log("Comment has been deleted, or was created by AI, ignore");
     return new Response(null, { status: 200 });
   }
 
@@ -26,7 +26,6 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
 
   if (!mentions.some((mention) => mention.id === AI_USER.id)) {
     // AI user was not mentioned, ignore
-    console.log("AI user was not mentioned, ignore");
     return new Response(null, { status: 200 });
   }
 
@@ -64,9 +63,16 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
     },
   });
 
-  // Use n8n to do AI magic
+  // Convert the user's comment to markdown
+  const markdownComment = await stringifyCommentBody(comment.body, {
+    format: "markdown",
+  });
+
+  // Use n8n to do AI magic with the user's markdown comment
   // ...
-  await new Promise((resolve) => setTimeout(resolve, 4000)); // Replace
+  // ...
+  // Simulate delay...
+  await new Promise((resolve) => setTimeout(resolve, 4000));
 
   // Structure a new comment with the results
   const commentCompleteBody: CommentBody = {
@@ -89,9 +95,9 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
       {
         type: "paragraph",
         children: [
-          { text: "Also you can tag " },
-          { type: "mention", kind: "user", id: AI_USER.id },
-          { text: " users and " },
+          { text: "Also you can tag users" },
+          { type: "mention", kind: "user", id: getRandomUser().id },
+          { text: " and " },
           {
             type: "link",
             text: "link elsewhere",
@@ -102,7 +108,6 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
     ],
   };
 
-  console.log("Editing AI comment with the final results");
   // Edit your AI comment with the final results
   await liveblocks.editComment({
     roomId,
@@ -114,8 +119,6 @@ export async function handleCommentCreated(event: CommentCreatedEvent) {
       editedAt: new Date(),
     },
   });
-
-  console.log("AI comment edited");
 
   return new Response(null, { status: 200 });
 }
