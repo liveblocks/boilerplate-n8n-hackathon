@@ -49,6 +49,10 @@
   height: 0;
 }
 
+.tiptap .lb-tiptap-thread-mark:not(p > span) {
+  font-weight: inherit;
+}
+
 .tiptap p {
   margin: var(--space-8) 0;
 }
@@ -116,7 +120,6 @@
 }
 
 .tiptap a {
-  color: var(--color-accent);
   font-weight: 600;
   cursor: pointer;
   text-decoration: underline;
