@@ -10,6 +10,11 @@ import {
   SelectValue,
 } from "@/components/ui/select";
 import { getCurrentUser, switchCurrentUser } from "@/lib/user";
+import {
+  ClientSideSuspense,
+  useIsInsideRoom,
+  useOthers,
+} from "@liveblocks/react/suspense";
 
 interface User {
   id: string;
@@ -22,8 +27,8 @@ interface User {
 
 export function Header() {
   const [users, setUsers] = useState<User[]>([]);
-  const [currentUserId, setCurrentUserId] = useState<string | null>(null);
   const [currentUser, setCurrentUser] = useState<User | null>(null);
+  const isInsideRoom = useIsInsideRoom();
 
   useEffect(() => {
     fetch("/api/users/all")
@@ -32,8 +37,6 @@ export function Header() {
         setUsers(data);
 
         const userId = getCurrentUser();
-        setCurrentUserId(userId);
-
         const user = data.find((u) => u.id === userId);
 
         if (user) {
@@ -55,30 +58,66 @@ export function Header() {
   };
 
   return (
-    <header className="w-full bg-background border-b">
-      <div className="container mx-auto px-4 py-3 flex justify-end items-center">
-        <div className="flex items-center gap-3 w-[200px]">
-          <Select value={currentUserId || ""} onValueChange={handleUserChange}>
-            <SelectTrigger className="w-[200px]">
-              <SelectValue placeholder="Select user" />
-            </SelectTrigger>
-            <SelectContent>
-              {users.map((user) => (
-                <SelectItem key={user.id} value={user.id}>
-                  {user.info.name}
-                </SelectItem>
-              ))}
-            </SelectContent>
-          </Select>
-          <Avatar>
-            <AvatarImage
-              src={currentUser?.info.avatar}
-              alt={currentUser?.info.name}
-            />
-            <AvatarFallback />
-          </Avatar>
+    <header className="w-full bg-background border-b h-[54px] px-4 flex items-center">
+      <div className="container mx-auto flex justify-between items-center">
+        <div className="w-[180px]">
+          {/* Switch authenticated users */}
+          {currentUser ? (
+            <>
+              <Select
+                value={currentUser.id || ""}
+                onValueChange={handleUserChange}
+              >
+                <SelectTrigger className="w-full">
+                  <SelectValue placeholder="Select user" />
+                </SelectTrigger>
+                <SelectContent>
+                  {users.map((user) => (
+                    <SelectItem key={user.id} value={user.id}>
+                      <img
+                        src={user.info.avatar}
+                        alt={user.info.name}
+                        className="w-5 h-5 rounded-full"
+                      />
+                      {user.info.name}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
+            </>
+          ) : null}
+        </div>
+
+        {/* Inside rooms, show a live avatar stack */}
+        <div className="flex items-center">
+          {isInsideRoom ? (
+            <ClientSideSuspense fallback={null}>
+              <LiveAvatars />
+
+              {/* Current user's avatar */}
+              <Avatar className="-ml-1">
+                <AvatarImage
+                  src={currentUser?.info.avatar}
+                  alt={currentUser?.info.name}
+                />
+                <AvatarFallback />
+              </Avatar>
+            </ClientSideSuspense>
+          ) : null}
         </div>
       </div>
     </header>
   );
+}
+
+// Every other connected user's avatar
+function LiveAvatars() {
+  const others = useOthers();
+
+  return others.map((other) => (
+    <Avatar key={other.id} className="-ml-1">
+      <AvatarImage src={other.info.avatar} alt={other.info.name} />
+      <AvatarFallback />
+    </Avatar>
+  ));
 }

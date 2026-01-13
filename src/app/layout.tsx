@@ -34,10 +34,7 @@ export default function RootLayout({
         />
       </head>
       <body className={`${inter.className} bg-muted text-[14px]`}>
-        <Providers>
-          <Header />
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );

@@ -1,0 +1,242 @@
+/* Text editor */
+.tiptap {
+  height: 100%;
+  padding: 12px 24px;
+  font-size: 16px;
+
+  --space-0: 0;
+  --space-1: 0.125rem;
+  --space-2: 0.25rem;
+  --space-3: 0.375rem;
+  --space-4: 0.5rem;
+  --space-5: 0.625rem;
+  --space-6: 0.75rem;
+  --space-7: 0.875rem;
+  --space-8: 1rem;
+  --space-9: 1.25rem;
+  --space-10: 1.5rem;
+  --space-11: 1.75rem;
+  --space-12: 2rem;
+  --space-13: 2.25rem;
+  --space-14: 2.5rem;
+  --space-15: 3rem;
+  --space-16: 3.5rem;
+  --space-17: 4rem;
+  --space-18: 4.5rem;
+  --space-19: 5rem;
+  --space-20: 6rem;
+  --space-21: 7rem;
+  --space-22: 8rem;
+  --space-23: 9rem;
+  --space-24: 10rem;
+  --size-2xs: 0.625rem;
+  --size-xs: 0.75rem;
+  --size-sm: 0.875rem;
+  --size: 1rem;
+  --size-lg: 1.125rem;
+  --size-xl: 1.25rem;
+  --size-2xl: 1.5rem;
+  --size-3xl: 2rem;
+  --size-4xl: 3rem;
+}
+
+/* Text editor placeholder */
+.tiptap p.is-editor-empty:first-child::before {
+  content: attr(data-placeholder);
+  float: left;
+  color: #adb5bd;
+  pointer-events: none;
+  height: 0;
+}
+
+.tiptap p {
+  margin: var(--space-8) 0;
+}
+
+.tiptap hr {
+  margin: var(--space-14) 0;
+  border-bottom: 1px solid var(--color-border);
+}
+
+/* Heading styles below */
+.tiptap h1 {
+  font-size: var(--size-3xl);
+  font-weight: bold;
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.tiptap h2 {
+  font-size: var(--size-2xl);
+  font-weight: bold;
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.tiptap h3 {
+  font-size: var(--size-xl);
+  font-weight: bold;
+  margin-top: var(--space-12);
+  margin-bottom: var(--space-8);
+}
+
+.tiptap h1:first-child,
+.tiptap h2:first-child,
+.tiptap h3:first-child {
+  margin-top: 0;
+}
+
+.tiptap h1 + h2,
+.tiptap h1 + h3,
+.tiptap h2 + h1,
+.tiptap h2 + h3,
+.tiptap h3 + h1,
+.tiptap h3 + h2 {
+  margin-top: 0;
+}
+
+/* Advanced inline styles below */
+.tiptap code {
+  font-size: 1.2em;
+  line-height: 1em;
+  background: var(--color-surface-hover);
+  border-radius: var(--radius-xs);
+  font-weight: 400;
+  padding: 0 var(--space-2);
+}
+
+.tiptap h1 code,
+.tiptap h2 code,
+.tiptap h3 code {
+  font-size: 1em;
+}
+
+.tiptap mark {
+  background: yellow;
+}
+
+.tiptap a {
+  color: var(--color-accent);
+  font-weight: 600;
+  cursor: pointer;
+  text-decoration: underline;
+}
+
+/* Block styles below */
+.tiptap blockquote {
+  margin-left: var(--space-8);
+  padding-left: var(--space-8);
+  display: block;
+  border-left: var(--space-2) solid var(--color-border-contrasted);
+}
+
+.tiptap li p {
+  margin: var(--space-2) 0;
+}
+
+.tiptap li {
+  margin-left: var(--space-12);
+  padding-left: var(--space-2);
+  list-style: disc;
+}
+
+.tiptap li li,
+.tiptap li li li li li {
+  margin-left: var(--space-8);
+  list-style: circle;
+}
+
+.tiptap li li li,
+.tiptap li li li li li li {
+  list-style: square;
+}
+
+.tiptap li li li li,
+.tiptap li li li li li li li {
+  list-style: disc;
+}
+
+.tiptap ol li {
+  list-style: decimal;
+}
+
+.tiptap ol li li,
+.tiptap ol li li li li li {
+  list-style: lower-alpha;
+}
+
+.tiptap ol li li li,
+.tiptap ol li li li li li li li {
+  list-style: lower-roman;
+}
+
+.tiptap ol li li li li,
+.tiptap ol li li li li li li li li {
+  list-style: decimal;
+}
+
+.tiptap ul {
+  list-style: none;
+  padding: 0;
+}
+
+.tiptap ul p {
+  margin: 0;
+}
+
+/* Styling for task item in /components/TextEditor/CustomTaskItem */
+
+/* Media blocks below */
+.tiptap pre {
+  font-size: var(--size-sm);
+  line-height: 1.6;
+  white-space: pre;
+  background: rgb(var(--color-gray-850));
+  color: rgb(var(--color-gray-100));
+  padding: var(--space-8);
+  border-radius: var(--radius-xs);
+  margin: var(--space-8) 0;
+}
+
+.tiptap img,
+.tiptap iframe {
+  margin: var(--space-8) 0;
+}
+
+.tiptap img.ProseMirror-selectednode,
+.tiptap iframe.ProseMirror-selectednode {
+  outline: 1.5px solid var(--color-accent);
+}
+
+.tiptap iframe {
+  border: 0;
+}
+
+/* Give a remote user a caret */
+.collaboration-cursor__caret {
+  border-left: 1px solid #0d0d0d;
+  border-right: 1px solid #0d0d0d;
+  margin-left: -1px;
+  margin-right: -1px;
+  pointer-events: none;
+  position: relative;
+  word-break: normal;
+}
+
+/* Render the username above the caret */
+.collaboration-cursor__label {
+  font-style: normal;
+  font-weight: 600;
+  left: -1px;
+  line-height: normal;
+  position: absolute;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 14px;
+  color: #fff;
+  top: -1.4em;
+  border-radius: 6px;
+  border-bottom-left-radius: 0;
+  padding: 2px 6px;
+  pointer-events: none;
+}

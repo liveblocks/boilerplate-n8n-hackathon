@@ -1,6 +1,6 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@import "./text-editor.css";
 @custom-variant dark (&:is(.dark *));
 
 html,
@@ -138,18 +138,4 @@ body {
   body {
     @apply bg-background text-foreground;
   }
-}
-
-.tiptap {
-  height: 100%;
-  padding: 12px;
-}
-
-/* Placeholder (at the top) */
-.ProseMirror p.is-editor-empty:first-child::before {
-  content: attr(data-placeholder);
-  float: left;
-  color: #adb5bd;
-  pointer-events: none;
-  height: 0;
 }

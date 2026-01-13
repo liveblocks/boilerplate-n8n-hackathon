@@ -4,10 +4,12 @@ import Room from "@/components/room";
 import { ClientSideSuspense, useThreads } from "@liveblocks/react/suspense";
 import { Loading } from "@/components/loading";
 import { Composer, Thread } from "@liveblocks/react-ui";
+import { Header } from "@/components/header";
 
 export default function Page() {
   return (
     <Room>
+      <Header />
       <div className="m-4">
         <div className="max-w-2xl lg:max-w-7xl w-full mx-auto my-12 flex flex-col gap-4">
           <h1 className="text-2xl font-bold">My comments app</h1>

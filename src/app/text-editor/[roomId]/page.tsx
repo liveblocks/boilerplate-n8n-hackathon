@@ -18,12 +18,15 @@ import { useEditor, EditorContent } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import { Icon } from "@liveblocks/react-ui";
 import { Placeholder } from "@tiptap/extensions";
+import { Header } from "@/components/header";
+import { toast } from "sonner";
 
 export default function Page() {
   return (
     <Room>
+      <Header />
       <div className="m-4">
-        <div className="max-w-full lg:max-w-6xl w-full mx-auto my-12 flex flex-col gap-4">
+        <div className="container mx-auto my-12 flex flex-col gap-4">
           <h1 className="text-2xl font-bold">My text editor app</h1>
           <ClientSideSuspense fallback={<Loading />}>
             <TextEditor />
@@ -53,7 +56,7 @@ export function TextEditor() {
   });
 
   return (
-    <div className="aspect-4/5 border rounded-sm bg-background h-full relative lg:mr-[350px] flex flex-col">
+    <div className="aspect-4/5 border rounded-sm bg-background h-full relative flex flex-col max-w-[1000px] lg:mr-[370px]">
       <div className="p-0.5 border-b">
         {/* Ready-made floating toolbar */}
         <FloatingToolbar editor={editor} />
@@ -69,7 +72,9 @@ export function TextEditor() {
             name="Ask AI"
             icon={<Icon.Sparkles />}
             shortcut="CMD-H"
-            onClick={() => console.log("A custom button was clicked")}
+            onClick={() =>
+              toast.success("Custom toolbar button—add your own behavior!")
+            }
           />
         </Toolbar>
       </div>
@@ -96,7 +101,7 @@ export function Threads({ editor }: { editor: Editor | null }) {
 
   return (
     <>
-      <div className="w-[350px] absolute top-0 left-full ml-5 hidden lg:block">
+      <div className="w-[350px] absolute top-0 left-full ml-5 hidden md:block">
         {threads.length === 0 ? (
           <div className="pt-2.5 text-sm text-muted-foreground">
             No comments yet
