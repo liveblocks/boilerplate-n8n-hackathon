@@ -15,6 +15,7 @@ import {
   useIsInsideRoom,
   useOthers,
 } from "@liveblocks/react/suspense";
+import { AI_USER } from "@/app/api/database";
 
 interface User {
   id: string;
@@ -34,7 +35,8 @@ export function Header() {
     fetch("/api/users/all")
       .then((res) => res.json())
       .then((data: User[]) => {
-        setUsers(data);
+        // Don't show the AI user in the list
+        setUsers(data.filter((user) => user.id !== AI_USER.id));
 
         const userId = getCurrentUser();
         const user = data.find((u) => u.id === userId);

@@ -1,3 +1,12 @@
+export const AI_USER: Liveblocks["UserMeta"] = {
+  id: "__ai__",
+  info: {
+    name: "AI assistant",
+    color: "#000000",
+    avatar: "https://liveblocks.io/avatars/avatar-1.png", // TODO
+  },
+};
+
 const USER_INFO: Liveblocks["UserMeta"][] = [
   {
     id: "charlie.layne@example.com",
@@ -63,6 +72,7 @@ const USER_INFO: Liveblocks["UserMeta"][] = [
       avatar: "https://liveblocks.io/avatars/avatar-8.png",
     },
   },
+  AI_USER,
 ];
 
 export function getRandomUser() {

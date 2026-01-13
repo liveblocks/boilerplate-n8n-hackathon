@@ -17,7 +17,7 @@ export default function Page() {
             <div className="grow">
               <App />
             </div>
-            <div className="min-w-[350px]">
+            <div className="w-full lg:max-w-[350px]">
               <ClientSideSuspense fallback={<Loading />}>
                 <Comments />
               </ClientSideSuspense>
@@ -31,7 +31,7 @@ export default function Page() {
 
 function App() {
   return (
-    <div className="aspect-4/3 border rounded-sm overflow-hidden bg-background">
+    <div className="aspect-4/3 border rounded-md overflow-hidden bg-background">
       <div className="w-full h-full flex items-center justify-center italic text-muted-foreground">
         Your app here
       </div>
@@ -48,10 +48,10 @@ function Comments() {
         <Thread
           key={thread.id}
           thread={thread}
-          className="shadow-xs border rounded-sm overflow-hidden"
+          className="shadow-xs border rounded-md overflow-hidden"
         />
       ))}
-      <Composer className="shadow-xs border rounded-sm overflow-hidden" />
+      <Composer className="shadow-xs border rounded-md overflow-hidden" />
     </div>
   );
 }

@@ -57,7 +57,7 @@ export function TextEditor() {
   });
 
   return (
-    <div className="aspect-4/5 border rounded-sm bg-background h-full relative flex flex-col max-w-[1000px] lg:mr-[370px]">
+    <div className="aspect-4/5 border rounded-md bg-background h-full relative flex flex-col max-w-[1000px] lg:mr-[370px]">
       <div className="p-0.5 border-b h-[40px]">
         {/* Ready-made floating toolbar */}
         <FloatingToolbar editor={editor} />
