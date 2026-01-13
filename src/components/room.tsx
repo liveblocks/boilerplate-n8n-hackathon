@@ -2,8 +2,7 @@
 
 import { ReactNode } from "react";
 import { useParams } from "next/navigation";
-import { ClientSideSuspense, RoomProvider } from "@liveblocks/react";
-import { Loading } from "@/components/loading";
+import { RoomProvider } from "@liveblocks/react";
 
 export default function Room({ children }: { children: ReactNode }) {
   const { roomId } = useParams();
@@ -14,7 +13,7 @@ export default function Room({ children }: { children: ReactNode }) {
       initialPresence={{}}
       initialStorage={{}}
     >
-      <ClientSideSuspense fallback={<Loading />}>{children}</ClientSideSuspense>
+      {children}
     </RoomProvider>
   );
 }

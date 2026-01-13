@@ -28,9 +28,7 @@ export default function Page() {
       <div className="m-4">
         <div className="container mx-auto my-12 flex flex-col gap-4">
           <h1 className="text-2xl font-bold">My text editor app</h1>
-          <ClientSideSuspense fallback={<Loading />}>
-            <TextEditor />
-          </ClientSideSuspense>
+          <TextEditor />
         </div>
       </div>
     </Room>
@@ -38,7 +36,9 @@ export default function Page() {
 }
 
 export function TextEditor() {
-  const liveblocks = useLiveblocksExtension();
+  const liveblocks = useLiveblocksExtension({
+    offlineSupport_experimental: true,
+  });
 
   const editor = useEditor({
     extensions: [
@@ -48,7 +48,7 @@ export function TextEditor() {
         undoRedo: false,
       }),
       Placeholder.configure({
-        // Styles in globals.css
+        // Styles in text-editor.css
         placeholder: "Write something…",
       }),
     ],
@@ -57,7 +57,7 @@ export function TextEditor() {
 
   return (
     <div className="aspect-4/5 border rounded-sm bg-background h-full relative flex flex-col max-w-[1000px] lg:mr-[370px]">
-      <div className="p-0.5 border-b">
+      <div className="p-0.5 border-b h-[40px]">
         {/* Ready-made floating toolbar */}
         <FloatingToolbar editor={editor} />
 
@@ -84,8 +84,9 @@ export function TextEditor() {
         <EditorContent
           editor={editor}
           className="h-full"
-          /* Editor styles in globals.css */
+          /* Editor styles in text-editor.css */
         />
+
         <FloatingComposer editor={editor} />
         <ClientSideSuspense fallback={<Loading />}>
           <Threads editor={editor} />
