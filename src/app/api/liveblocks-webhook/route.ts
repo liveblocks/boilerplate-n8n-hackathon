@@ -2,7 +2,7 @@ import { WebhookHandler } from "@liveblocks/node";
 import { Liveblocks as LiveblocksNode } from "@liveblocks/node";
 import { handleCommentCreated } from "./handleCommentCreated";
 import { handleTextEditorUpdate } from "./handleTextEditorUpdate";
-import { handleTldrawUpdate } from "./handleTldrawUpdate";
+import { handleStorageUpdate } from "./handleStorageUpdate";
 
 // Add your webhook secret key from a project's webhooks dashboard
 const webhookHandler = new WebhookHandler(
@@ -36,14 +36,14 @@ export async function POST(request: Request) {
       return await handleCommentCreated(event);
     }
 
-    // When the text editor content is edited
+    // When text editor content is edited
     if (event.type === "ydocUpdated") {
       return await handleTextEditorUpdate(event);
     }
 
-    // When the storage (tldraw in this app) content is edited
+    // When Storage (tldraw/builder) content is edited
     if (event.type === "storageUpdated") {
-      return await handleTldrawUpdate(event);
+      return await handleStorageUpdate(event);
     }
   } catch (err) {
     console.error(err);

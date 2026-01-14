@@ -1,9 +1,9 @@
-import { StorageUpdatedEvent } from "@liveblocks/node";
+import { LiveObject, StorageUpdatedEvent } from "@liveblocks/node";
 import { liveblocks } from "./route";
 import { nanoid } from "nanoid";
 
-// Triggers once every 60 seconds at most, after storage (tldraw) content is edited
-export async function handleTldrawUpdate(event: StorageUpdatedEvent) {
+// Triggers once every 60 seconds at most, after Storage (tldraw/builder) content is edited
+export async function handleStorageUpdate(event: StorageUpdatedEvent) {
   console.log("StorageUpdatedEvent");
 
   const { roomId } = event.data;
@@ -17,11 +17,23 @@ export async function handleTldrawUpdate(event: StorageUpdatedEvent) {
   // Simulate delay...
   await new Promise((resolve) => setTimeout(resolve, 4000));
 
-  // Optionally edit the document
+  // Optionally edit the document (tldraw)
   // await liveblocks.mutateStorage(roomId, ({ root }) => {
   //   const records = root.get("records");
   //   const id = `shape:${nanoid()}`;
   //   records.set(id, rectangle(id));
+  // });
+
+  // Optionally edit the document (builder)
+  // await liveblocks.mutateStorage(roomId, ({ root }) => {
+  //   const blocks = root.get("blocks");
+  //
+  //   const newBlock = new LiveObject({
+  //     id: nanoid(),
+  //     content: "Hello world",
+  //   });
+  //
+  //   blocks.push(newBlock);
   // });
 
   return new Response(null, { status: 200 });

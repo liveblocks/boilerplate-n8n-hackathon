@@ -117,7 +117,7 @@ function LiveAvatars() {
   const others = useOthers();
 
   return others.map((other) => (
-    <Avatar key={other.id} className="-ml-1">
+    <Avatar key={other.connectionId} className="-ml-1">
       <AvatarImage src={other.info.avatar} alt={other.info.name} />
       <AvatarFallback />
     </Avatar>

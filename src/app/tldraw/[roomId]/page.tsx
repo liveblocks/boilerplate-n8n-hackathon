@@ -11,7 +11,7 @@ import "tldraw/tldraw.css";
 export default function Page() {
   return (
     <Room>
-      <div className="inset-0 absolute flex flex-col h-full">
+      <div className="inset-0 fixed flex flex-col h-full">
         <Header />
         <div className="grow">
           <ClientSideSuspense fallback={<Loading />}>

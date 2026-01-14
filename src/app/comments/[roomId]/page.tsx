@@ -11,7 +11,7 @@ export default function Page() {
     <Room>
       <Header />
       <div className="m-4">
-        <div className="max-w-2xl lg:max-w-7xl w-full mx-auto my-12 flex flex-col gap-4">
+        <div className="container mx-auto my-12 flex flex-col gap-4">
           <h1 className="text-2xl font-bold">My comments app</h1>
           <div className="flex flex-col lg:flex-row gap-3">
             <div className="grow">
