@@ -15,7 +15,7 @@ export default function Page() {
     <Room>
       <div className="inset-0 fixed flex flex-col h-full">
         <Header />
-        <div className="container mx-auto my-12 flex flex-col gap-4 grow">
+        <div className="container mx-auto mt-12 mb-4 flex flex-col gap-4 grow">
           <h1 className="text-2xl font-bold">Builder</h1>
           <div className="flex flex-row gap-4 grow items-stretch">
             <div className="w-[350px] border bg-background rounded-md">

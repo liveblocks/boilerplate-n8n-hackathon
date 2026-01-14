@@ -178,7 +178,7 @@ function SortableBlock({ blockId }: { blockId: string }) {
     <div
       ref={setNodeRef}
       style={style}
-      className="p-4 flex items-center gap-3 rounded-md bg-muted hover:bg-muted/60 mb-2 border border-muted-foreground/5"
+      className="p-4 flex items-center gap-3 rounded-sm bg-muted hover:bg-muted/60 mb-2 border border-muted-foreground/5"
     >
       <button
         {...attributes}

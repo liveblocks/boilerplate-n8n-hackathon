@@ -105,7 +105,7 @@ export function Threads({ editor }: { editor: Editor | null }) {
     <>
       <div className="w-[350px] absolute top-0 left-full ml-5 hidden md:block">
         {threads.length === 0 ? (
-          <div className="pt-2.5 text-sm text-muted-foreground">
+          <div className="pt-2.5 text-sm text-muted-foreground italic">
             No comments yet
           </div>
         ) : (
