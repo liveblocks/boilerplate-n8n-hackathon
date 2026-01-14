@@ -3,6 +3,7 @@ import { liveblocks } from "./route";
 import { nanoid } from "nanoid";
 
 // Triggers once every 60 seconds at most, after Storage (tldraw/builder) content is edited
+// Some off this logic may be handled by n8n instead, e.g. getStorageDocument, mutateStorage
 export async function handleStorageUpdate(event: StorageUpdatedEvent) {
   console.log("StorageUpdatedEvent");
 

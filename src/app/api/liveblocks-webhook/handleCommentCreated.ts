@@ -8,6 +8,7 @@ import { liveblocks } from "./route";
 import { AI_USER, getRandomUser } from "../database";
 
 // Triggers immediately after a comment is created
+// Some off this logic may be handled by n8n instead, e.g. getComment, addCommentReaction
 export async function handleCommentCreated(event: CommentCreatedEvent) {
   console.log("CommentCreatedEvent");
 
