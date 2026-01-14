@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <div>
       <Header />
-      <div className="container mx-auto mt-12 mb-4 flex flex-col gap-4 items-start">
+      <div className="container mx-auto mt-12 mb-4 flex flex-col gap-4 items-start p-4">
         <h1 className="text-2xl font-bold">Boilerplate for n8n hackathon</h1>
         <p>
           This is a series of mini-apps you may wish to extend when trying out
