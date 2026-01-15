@@ -10,6 +10,8 @@ export function Providers({ children }: { children: ReactNode }) {
     <>
       <Toaster />
       <LiveblocksProvider
+        // @ts-ignore - hidden config option
+        baseUrl="https://dev.dev-liveblocks5948.workers.dev/"
         throttle={16}
         authEndpoint={async (room) => {
           // Use localStorage as a demo login system

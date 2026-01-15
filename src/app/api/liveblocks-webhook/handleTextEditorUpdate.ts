@@ -1,5 +1,5 @@
 import { YDocUpdatedEvent } from "@liveblocks/node";
-import { liveblocks } from "./route";
+import { liveblocks } from "../liveblocks-auth/route";
 import { withProsemirrorDocument } from "@liveblocks/node-prosemirror";
 
 // Triggers once every 60 seconds at most, after text editor content is edited

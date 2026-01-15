@@ -31,10 +31,10 @@ export default function Home() {
           <li>
             Add your secret key from the{" "}
             <a
-              href="https://liveblocks.io/dashboard"
+              href="https://development.liveblocks.io/dashboard"
               className="underline font-medium"
             >
-              dashboard
+              development dashboard
             </a>{" "}
             and add it to <code>LIVEBLOCKS_SECRET_KEY</code> in{" "}
             <code>.env.local</code>

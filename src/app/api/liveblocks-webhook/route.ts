@@ -1,5 +1,4 @@
 import { WebhookHandler } from "@liveblocks/node";
-import { Liveblocks as LiveblocksNode } from "@liveblocks/node";
 import { handleCommentCreated } from "./handleCommentCreated";
 import { handleTextEditorUpdate } from "./handleTextEditorUpdate";
 import { handleStorageUpdate } from "./handleStorageUpdate";
@@ -8,11 +7,6 @@ import { handleStorageUpdate } from "./handleStorageUpdate";
 const webhookHandler = new WebhookHandler(
   process.env.LIVEBLOCKS_WEBHOOK_SECRET_KEY as string
 );
-
-// Add your secret key from a project's API keys dashboard
-export const liveblocks = new LiveblocksNode({
-  secret: process.env.LIVEBLOCKS_SECRET_KEY as string,
-});
 
 export async function POST(request: Request) {
   const body = await request.json();

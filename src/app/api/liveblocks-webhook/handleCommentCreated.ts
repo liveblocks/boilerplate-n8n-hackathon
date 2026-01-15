@@ -4,7 +4,7 @@ import {
   getMentionsFromCommentBody,
   stringifyCommentBody,
 } from "@liveblocks/node";
-import { liveblocks } from "./route";
+import { liveblocks } from "../liveblocks-auth/route";
 import { AI_USER, getRandomUser } from "../database";
 
 // Triggers immediately after a comment is created

@@ -1,7 +1,9 @@
 import { Liveblocks } from "@liveblocks/node";
 import { getUser } from "@/app/api/database";
 
-const liveblocks = new Liveblocks({
+export const liveblocks = new Liveblocks({
+  // @ts-ignore - hidden config option
+  baseUrl: "https://dev.dev-liveblocks5948.workers.dev/",
   secret: process.env.LIVEBLOCKS_SECRET_KEY as string,
 });
 

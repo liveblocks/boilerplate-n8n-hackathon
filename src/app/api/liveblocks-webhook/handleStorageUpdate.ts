@@ -1,5 +1,5 @@
 import { LiveObject, StorageUpdatedEvent } from "@liveblocks/node";
-import { liveblocks } from "./route";
+import { liveblocks } from "../liveblocks-auth/route";
 import { nanoid } from "nanoid";
 
 // Triggers once every 60 seconds at most, after Storage (tldraw/builder) content is edited
