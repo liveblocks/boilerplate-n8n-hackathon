@@ -14,6 +14,9 @@ export default function Home() {
         </p>
         <ul className="list-disc *:underline *:font-medium ml-6">
           <li>
+            <a href={"/chat/" + nanoid()}>AI Chat</a>
+          </li>
+          <li>
             <a href={"/comments/" + nanoid()}>Comments</a>
           </li>
           <li>
