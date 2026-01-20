@@ -2,6 +2,8 @@ import { YDocUpdatedEvent } from "@liveblocks/node";
 import { liveblocks } from "../liveblocks-auth/route";
 import { withProsemirrorDocument } from "@liveblocks/node-prosemirror";
 
+// NOTE: This file is not needed if you're using ONLY n8n with your webhooks.
+
 // Triggers once every 60 seconds at most, after text editor content is edited
 export async function handleTextEditorUpdate(event: YDocUpdatedEvent) {
   console.log("YDocUpdatedEvent");

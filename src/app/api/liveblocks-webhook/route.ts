@@ -3,6 +3,8 @@ import { handleCommentCreated } from "./handleCommentCreated";
 import { handleTextEditorUpdate } from "./handleTextEditorUpdate";
 import { handleStorageUpdate } from "./handleStorageUpdate";
 
+// NOTE: This file is not needed if you're using ONLY n8n with your webhooks.
+
 // Add your webhook secret key from a project's webhooks dashboard
 const webhookHandler = new WebhookHandler(
   process.env.LIVEBLOCKS_WEBHOOK_SECRET_KEY as string

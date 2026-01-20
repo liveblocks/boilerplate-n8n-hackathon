@@ -7,6 +7,8 @@ import {
 import { liveblocks } from "../liveblocks-auth/route";
 import { AI_USER, getRandomUser } from "../database";
 
+// NOTE: This file is not needed if you're using ONLY n8n with your webhooks.
+
 // Triggers immediately after a comment is created
 // Some off this logic may be handled by n8n instead, e.g. getComment, addCommentReaction
 export async function handleCommentCreated(event: CommentCreatedEvent) {
