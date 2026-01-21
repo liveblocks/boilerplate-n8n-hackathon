@@ -107,26 +107,20 @@ n8n start
 
 <img width="1028" height="848" alt="CleanShot 2026-01-21 at 14 10 51@2x" src="https://github.com/user-attachments/assets/99f87388-f610-43ac-b75b-b7b5ecf9b12f" />
 
-4. Open the first node and copy the "Test URL".
-
-https://github.com/user-attachments/assets/8c3025a4-9e91-41a9-96b6-7538d372db86
-
-5. Paste the test URL into the `.env.local` file in the project.
-
-```dotenv
-N8N_WEBHOOK_URL=http://localhost:5678/webhook-test/...
-```
-
-6. Go back to n8n, and press "Execute workflow". You can now use your AI chat! This will work for a single run.
-
-https://github.com/user-attachments/assets/7e29c0d9-1c95-4aa1-af9e-df6bcc2cc91a
-
-7. Extend your app! Add more nodes, link up to Google Calendar, Linear, Notion, and more.
-
-8. To keep your chat running for more than one message, you can copy your "Production URL", "Publish" your app, and paste it into `.env.local`. It will now stay online!
+4. Open the first node, copy the "Production URL", and "Publish" your app.
 
 https://github.com/user-attachments/assets/4016d486-167a-4627-8b1e-a6ba7e50c137
 
+
+5. Paste the Production URL into the `.env.local` file in the project.
+
+```dotenv
+N8N_WEBHOOK_URL=http://localhost:5678/webhook/...
+```
+
+6. You can now use your AI chat!
+
+7. Extend your app! Add more nodes, link up to Google Calendar, Linear, Notion, and more.
 
 ## Troubleshooting
 
