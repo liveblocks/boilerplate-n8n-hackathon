@@ -103,7 +103,9 @@ export function ThinkingMessage() {
 
       <Message from="assistant">
         <MessageContent className="gap-1.5 rounded-lg bg-secondary px-4 py-3">
-          <div className="text-xs text-muted-foreground">{AI_USER.info.name}</div>
+          <div className="text-xs text-muted-foreground">
+            {AI_USER.info.name}
+          </div>
           <div className="text-sm">
             <Shimmer duration={1}>Thinking…</Shimmer>
           </div>

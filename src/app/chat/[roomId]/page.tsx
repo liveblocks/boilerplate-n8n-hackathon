@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useParams } from "next/navigation";
 import Room from "@/components/room";
 import { Header } from "@/components/header";
@@ -17,9 +17,17 @@ import {
   PromptInputFooter,
   PromptInputSubmit,
 } from "@/components/ai-elements/prompt-input";
-import { useSelf, ClientSideSuspense, useOthers } from "@liveblocks/react/suspense";
+import {
+  useSelf,
+  ClientSideSuspense,
+  useOthers,
+} from "@liveblocks/react/suspense";
 import { Loading } from "@/components/loading";
-import { AiChatMessage, HumanChatMessage, ThinkingMessage } from "./chat-message";
+import {
+  AiChatMessage,
+  HumanChatMessage,
+  ThinkingMessage,
+} from "./chat-message";
 import { useAgentSession } from "@liveblocks/react";
 import { sendMessageToN8n } from "./sendMessageToN8n";
 import type { AgentSessionMessage } from "./types";
@@ -43,7 +51,7 @@ export default function Page() {
 function ChatApp() {
   const { roomId } = useParams();
   const currentUser = useSelf();
-  
+
   // Add a chat switcher if you like
   const [sessionId, setSessionId] = useState("chat-session-1");
 
@@ -52,7 +60,9 @@ function ChatApp() {
 
   // Search through connected users and see if there's an AI thinking
   const others = useOthers();
-  const aiIsThinking = others.some((other) => other.presence.agentState === "thinking");
+  const aiIsThinking = others.some(
+    (other) => other.presence.agentState === "thinking"
+  );
 
   if (!messages) {
     return <Loading />;
@@ -72,7 +82,11 @@ function ChatApp() {
             <>
               {typedMessages.map(({ id, data: { userId, content } }) =>
                 userId ? (
-                  <HumanChatMessage key={id} userId={userId} content={content} />
+                  <HumanChatMessage
+                    key={id}
+                    userId={userId}
+                    content={content}
+                  />
                 ) : (
                   <AiChatMessage key={id} content={content} />
                 )
