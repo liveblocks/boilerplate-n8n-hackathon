@@ -31,7 +31,7 @@ when the AI is generating text, and this works using the "Update Presence" node.
 
 ### The whole flow
 
-Here's how the whole flow works.
+Here's how this n8n flow works. The file for the workflow is `n8n-chat-workflow.json` which you'll import into n8n later.
 
 <img width="3386" height="2276" alt="CleanShot 2026-01-21 at 15 38 35@2x" src="https://github.com/user-attachments/assets/fd0e22f0-afe0-4bfc-84e3-e22fc2bdcc35" />
 
