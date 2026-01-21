@@ -1,0 +1,219 @@
+{
+  "name": "n8n chat workflow",
+  "nodes": [
+    {
+      "parameters": {
+        "httpMethod": "POST",
+        "path": "ab33f7de-049a-4ca6-a79d-728fbb919928",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.webhook",
+      "typeVersion": 2.1,
+      "position": [
+        -224,
+        64
+      ],
+      "id": "35b10c55-6eb7-4819-9bee-fe929ef4df5f",
+      "name": "Webhook",
+      "webhookId": "ab33f7de-049a-4ca6-a79d-728fbb919928"
+    },
+    {
+      "parameters": {
+        "roomId": "={{ $('Webhook').item.json.body.roomId }}",
+        "agentSessionId": "={{ $('Webhook').item.json.body.sessionId }}",
+        "data": "={\n  \"id\": \"{{ $execution.id }}\",\n  \"content\": {{ JSON.stringify($json.output) }}\n}",
+        "additionalFields": {}
+      },
+      "type": "CUSTOM.liveblocksAddAgentMessage",
+      "typeVersion": 1,
+      "position": [
+        528,
+        160
+      ],
+      "id": "f3745722-fcc3-4ed6-8ea5-bf528eb30b55",
+      "name": "Liveblocks Add Agent Message",
+      "credentials": {
+        "liveblocksApi": {
+          "id": "crFH7r0ALVz7pyPy",
+          "name": "Liveblocks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        176,
+        160
+      ],
+      "id": "077d386d-24d1-480c-9c51-800dbecbd986",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "mode": "list",
+          "value": "gpt-4.1-mini"
+        },
+        "builtInTools": {},
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        176,
+        416
+      ],
+      "id": "f5ba89d3-c0e1-41ac-b780-6744f2b080f1",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "cazPtKde77QVPIHm",
+          "name": "OpenAi account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "roomId": "={{ $json.body.roomId }}",
+        "agentSessionId": "={{ $json.body.sessionId }}"
+      },
+      "type": "CUSTOM.liveblocksListAgentMessages",
+      "typeVersion": 1,
+      "position": [
+        -16,
+        64
+      ],
+      "id": "3cc6c3d0-dd92-479e-bf04-fb29d4adb9f3",
+      "name": "Liveblocks List Agent Messages",
+      "credentials": {
+        "liveblocksApi": {
+          "id": "crFH7r0ALVz7pyPy",
+          "name": "Liveblocks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "roomId": "={{ $json.body.roomId }}",
+        "data": "{\n  \"agentState\": \"thinking\"\n}",
+        "userInfo": "{\"name\": \"AI assistant\"}"
+      },
+      "type": "CUSTOM.liveblocksUpdatePresence",
+      "typeVersion": 1,
+      "position": [
+        48,
+        -80
+      ],
+      "id": "71d5b44d-a4c3-496c-a800-f716c7c6e897",
+      "name": "Liveblocks Update Presence",
+      "credentials": {
+        "liveblocksApi": {
+          "id": "crFH7r0ALVz7pyPy",
+          "name": "Liveblocks account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "roomId": "={{ $('Webhook').item.json.body.roomId }}",
+        "data": "{\n  \"agentState\": \"completed\"\n}",
+        "userInfo": "{\"name\": \"AI assistant\"}"
+      },
+      "type": "CUSTOM.liveblocksUpdatePresence",
+      "typeVersion": 1,
+      "position": [
+        528,
+        0
+      ],
+      "id": "8809c0c3-2b62-47d1-9391-51b728bf0e1f",
+      "name": "Liveblocks Update Presence1",
+      "credentials": {
+        "liveblocksApi": {
+          "id": "crFH7r0ALVz7pyPy",
+          "name": "Liveblocks account"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Webhook": {
+      "main": [
+        [
+          {
+            "node": "Liveblocks List Agent Messages",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Liveblocks Update Presence",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Liveblocks Add Agent Message",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Liveblocks Update Presence1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liveblocks List Agent Messages": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Liveblocks Add Agent Message": {
+      "main": [
+        []
+      ]
+    }
+  },
+  "active": true,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "e9275f6e-cc11-4d89-947b-56c5b1b4782b",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "fdd58b028250e4811c462e28c5cbca067bcbfe46a2f4e6fd38647ade19e87602"
+  },
+  "id": "da30ogbmqLTtbYucosE8G",
+  "tags": []
+}

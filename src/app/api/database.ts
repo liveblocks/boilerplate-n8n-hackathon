@@ -1,5 +1,5 @@
 export const AI_USER: Liveblocks["UserMeta"] = {
-  id: "__ai__",
+  id: "n8n-agent",
   info: {
     name: "AI assistant",
     color: "#000000",

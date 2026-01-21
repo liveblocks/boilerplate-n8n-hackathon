@@ -11,6 +11,8 @@ declare global {
     Presence: {
       // Used by tldraw
       presence: any;
+
+      agentState?: "thinking" | "completed";
     };
 
     // Each user's Storage, for room.getStorage, room.subscribe("storage"), etc.
