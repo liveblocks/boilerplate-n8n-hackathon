@@ -6,6 +6,7 @@ import {
   MessageResponse,
 } from "@/components/ai-elements/message";
 import { Avatar, AvatarImage, AvatarFallback } from "@/components/ui/avatar";
+import { Shimmer } from "@/components/ai-elements/shimmer";
 import { AI_USER } from "@/app/api/database";
 import { useUser, useSelf } from "@liveblocks/react";
 
@@ -53,7 +54,13 @@ export function ChatMessage({
   avatar,
   content,
   isUser,
-}: { isUser: boolean, name: string, avatar?: string, content: string, side: "left" | "right" }) {
+}: {
+  isUser: boolean;
+  name: string;
+  avatar?: string;
+  content: string;
+  side: "left" | "right";
+}) {
   const isRight = side === "right";
 
   return (
@@ -82,6 +89,26 @@ export function ChatMessage({
           <AvatarFallback>{name?.[0] || "U"}</AvatarFallback>
         </Avatar>
       )}
+    </div>
+  );
+}
+
+export function ThinkingMessage() {
+  return (
+    <div className="flex gap-2 items-start flex-row">
+      <Avatar className="size-8 shrink-0 mt-1">
+        <AvatarImage src={AI_USER.info.avatar} alt={AI_USER.info.name} />
+        <AvatarFallback>{AI_USER.info.name?.[0] || "A"}</AvatarFallback>
+      </Avatar>
+
+      <Message from="assistant">
+        <MessageContent className="gap-1.5 rounded-lg bg-secondary px-4 py-3">
+          <div className="text-xs text-muted-foreground">{AI_USER.info.name}</div>
+          <div className="text-sm">
+            <Shimmer duration={1}>Thinking…</Shimmer>
+          </div>
+        </MessageContent>
+      </Message>
     </div>
   );
 }

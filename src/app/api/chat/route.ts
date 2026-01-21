@@ -56,12 +56,12 @@ export async function POST(request: NextRequest) {
       throw new Error(`Failed to get agent session: ${getResponse.statusText}`);
     }
 
-    // TODO: Add your custom logic here when a new chat is created
-    // For example, you might want to:
-    // - Send a webhook to n8n
-    // - Initialize the chat with a welcome message
-    // - Set up custom metadata
-    // - etc.
+    console.log("Connecting to n8n webhook");
+    // Connect to n8n webhook
+    await fetch(process.env.N8N_WEBHOOK_URL as string, {
+      method: "POST",
+      body: JSON.stringify({ roomId, sessionId, metadata }),
+    });
 
     return NextResponse.json({ success: true }, { status: 200 });
   } catch (error) {
