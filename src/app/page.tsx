@@ -13,11 +13,11 @@ export default function Home() {
             This app contains a demo AI chat that you can link to n8n and extend
             yourself. It also contains a Liveblocks setup with simple
             authentication & features, along with pre-built UI components from
-            shadcn/ui Vercel AI elements.
+            shadcn/ui and Vercel AI elements.
           </p>
           <p>
-            Check `README.md` for more information, and click below to open a
-            new chat.
+            Check <code>README.md</code> for more information, and click below
+            to open a new chat.
           </p>
         </section>
         <Button asChild>

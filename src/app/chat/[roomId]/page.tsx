@@ -39,7 +39,13 @@ export default function Page() {
       <div className="m-4">
         <div className="container mx-auto my-12 flex flex-col gap-4 max-w-4xl">
           <h1 className="text-2xl font-bold">AI Chat</h1>
-          <ClientSideSuspense fallback={null}>
+          <ClientSideSuspense
+            fallback={
+              <div className="fixed inset-0 flex items-center justify-center">
+                <Loading />
+              </div>
+            }
+          >
             <ChatApp />
           </ClientSideSuspense>
         </div>
@@ -77,7 +83,9 @@ function ChatApp() {
       <Conversation>
         <ConversationContent>
           {typedMessages.length === 0 ? (
-            <ConversationEmptyState />
+            <div className="absolute inset-0 flex items-center justify-center">
+              <ConversationEmptyState />
+              </div>
           ) : (
             <>
               {typedMessages.map(({ id, data: { userId, content } }) =>
