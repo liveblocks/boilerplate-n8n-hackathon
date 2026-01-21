@@ -68,7 +68,7 @@ n8n start
 
 1. Download the `n8n-chat-workflow.json` file in this repo.
 2. In n8n, go to the [Overview page](http://localhost:5678/home/workflows) and hit “Create Workflow” in the top-right
-3. Open the menu at the top-right and import the `n8n-chat-workflow.json` file.
+3. Open the menu at the top-right and import the `n8n-chat-workflow.json` file, found at the root of this project.
 
 <img width="1028" height="848" alt="CleanShot 2026-01-21 at 14 10 51@2x" src="https://github.com/user-attachments/assets/99f87388-f610-43ac-b75b-b7b5ecf9b12f" />
 
@@ -101,8 +101,3 @@ https://github.com/user-attachments/assets/4016d486-167a-4627-8b1e-a6ba7e50c137
 - If you need to tunnel for Webhooks, use ngrok or 
 `npx localtunnel --port 5678`
 
-## Modifying
-
-Add or modify nodes in the n8n-nodes/nodes folder
-
-Modify API (from dev) endpoint in /utils/consts.ts
