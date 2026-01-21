@@ -126,7 +126,8 @@ https://github.com/user-attachments/assets/065ad805-15e0-4f23-b2d4-dc3ed7e40f4e
  - Read events from your Google Calendar and answer questions.
  - Create new issues on Linear, and link to them.
  - Generate documents on Notion, and suggest further changes.
- ...and much more!
+
+...and much more—happy hacking!
 
 ## Troubleshooting
 
