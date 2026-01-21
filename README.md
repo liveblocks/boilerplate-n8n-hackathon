@@ -1,8 +1,39 @@
 # Liveblocks Workshop: Set up
 
-This repo is a demo chat application that allows you to use Liveblocks agents session through n8n, enabling you to build complex AI workflows. Feel free to extend it, and make it your own.
+This repo contains a demo chat application that allows you to use Liveblocks agents session through n8n, 
+enabling you to build complex AI workflows. Feel free to extend it, and make it your own.
 
 https://github.com/user-attachments/assets/c3f0618d-302b-48ff-a2a2-989134772cb4
+
+## Explanation
+
+### What is n8n?
+
+n8n is a workflow interface that lets you connect together different applications and APIs, ideal 
+for building multi-step AI agents. Working like a flowchart, each item is called a _node_ (not 
+related to _Node.js_). We've created a set of Liveblocks nodes, that allow you to interact with
+our APIs via n8n.
+
+### Agent sessions
+
+Agent sessions is a new Liveblocks feature we've been developing. Each session is a real-time
+message store, which allows you to place in any data you like. When data is placed inside, it
+will update immediately for all connected users.
+
+This project has a chat setup that creates/fetches an agent session for you when a chat message
+is sent, then triggers your n8n webhook. Within n8n we have a node that lets you add a new 
+message, "Add Agent Message". In our app, we can see that the `useAgentSession` update hook
+updates with the new message whenever this is called.
+
+Additionally, _agent presence_ allows you to show the active status of an AI agent, for example
+"Thinking...", or "Searching...". This project is set up to display a "Thinking..." message
+when the AI is generating text, and this works using the "Update Presence" node.
+
+### The whole flow
+
+Here's how the whole flow works.
+
+<img width="3386" height="2276" alt="CleanShot 2026-01-21 at 15 38 35@2x" src="https://github.com/user-attachments/assets/fd0e22f0-afe0-4bfc-84e3-e22fc2bdcc35" />
 
 ## Set up Node.js 
 
