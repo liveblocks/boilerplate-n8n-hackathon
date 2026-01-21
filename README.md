@@ -4,9 +4,6 @@ This repo is a demo chat application that allows you to use Liveblocks agents se
 
 https://github.com/user-attachments/assets/c3f0618d-302b-48ff-a2a2-989134772cb4
 
-> [!TIP]
-> Node 22.16-24.X is required. It's easy to [switch versions with nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#intro).
-
 ## Clone this repo
 
 1. Clone, install, and run this repo.
@@ -30,6 +27,9 @@ LIVEBLOCKS_SECRET_KEY=sk_...
 ```
 
 ## Set up n8n
+
+> [!TIP]
+> Node 22.16-24.X is required. It's easy to [switch versions with nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#intro).
 
 1. Install n8n via terminal.
 
