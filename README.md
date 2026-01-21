@@ -38,8 +38,8 @@ npm install -g n8n
 ```
 
 2. Go to http://localhost:5678/ + sign up. If you don't see a sign up page, run `n8n user-management:reset`.
-3. Stop n8n (cmd+c).
-4. Set up Liveblocks N8N nodes.
+3. Stop n8n (cmd+c / ctrl+c).
+4. Download and install the custom Liveblocks n8n nodes.
 
 ```bash
 cd ~/.n8n
