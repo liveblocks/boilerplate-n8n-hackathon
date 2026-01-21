@@ -17,9 +17,13 @@ import {
   PromptInputFooter,
   PromptInputSubmit,
 } from "@/components/ai-elements/prompt-input";
-import { useSelf, useOthers, ClientSideSuspense } from "@liveblocks/react/suspense";
+import {
+  useSelf,
+  useOthers,
+  ClientSideSuspense,
+} from "@liveblocks/react/suspense";
 import { Loading } from "@/components/loading";
-import { ChatMessage } from "./chat-message";
+import { AiChatMessage, HumanChatMessage } from "./chat-message";
 import { useAgentSession } from "@liveblocks/react";
 
 export default function Page() {
@@ -40,9 +44,7 @@ export default function Page() {
 
 function ChatApp() {
   const { roomId } = useParams();
-  const currentUser = useSelf((me) => ({ id: me.id, info: me.info }));
-  const others = useOthers();
-  const aiInfo = { name: "AI", avatar: "" };
+  const currentUser = useSelf();
 
   const { messages } = useAgentSession(roomId as string);
   console.log("messages", messages);
@@ -62,18 +64,20 @@ function ChatApp() {
     {
       id: "2",
       role: "assistant",
-      content: "Hello! I'm here to help you with any questions or tasks you might have. What would you like to know?",
+      content:
+        "Hello! I'm here to help you with any questions or tasks you might have. What would you like to know?",
     },
     {
       id: "3",
       role: "user",
       content: "Can you explain what AI is?",
-      userId: "other-user-1", // Other user
+      userId: "jody.hekla@example.com", // Other user
     },
     {
       id: "4",
       role: "assistant",
-      content: "AI, or Artificial Intelligence, refers to computer systems that can perform tasks typically requiring human intelligence. This includes things like understanding language, recognizing patterns, making decisions, and learning from experience.",
+      content:
+        "AI, or Artificial Intelligence, refers to computer systems that can perform tasks typically requiring human intelligence. This includes things like understanding language, recognizing patterns, making decisions, and learning from experience.",
     },
     {
       id: "5",
@@ -84,7 +88,8 @@ function ChatApp() {
     {
       id: "6",
       role: "assistant",
-      content: "You're welcome! Feel free to ask me anything else you'd like to know.",
+      content:
+        "You're welcome! Feel free to ask me anything else you'd like to know.",
     },
   ];
 
@@ -96,37 +101,17 @@ function ChatApp() {
           {fakeMessages.length === 0 ? (
             <ConversationEmptyState />
           ) : (
-            fakeMessages.map((message) => {
-              const isCurrentUser = message.userId === currentUser.id;
-              const isRightSide = message.role === "user" && isCurrentUser;
-
-              let name: string;
-              let avatar: string | undefined;
-
-              if (message.role === "assistant") {
-                name = aiInfo.name;
-                avatar = aiInfo.avatar;
-              } else if (isCurrentUser) {
-                name = currentUser.info.name;
-                avatar = currentUser.info.avatar;
-              } else {
-                const otherUserInfo =
-                  others.find((other) => other.id === message.userId)?.info ||
-                  { name: "User", avatar: "" };
-                name = otherUserInfo.name;
-                avatar = otherUserInfo.avatar;
-              }
-
-              return (
-                <ChatMessage
-                  key={message.id}
-                  side={isRightSide ? "right" : "left"}
-                  name={name}
-                  avatar={avatar}
-                  content={message.content}
+            fakeMessages.map(({ userId, content, id }) =>
+              userId ? (
+                <HumanChatMessage
+                  key={id}
+                  userId={userId}
+                  content={content}
                 />
-              );
-            })
+              ) : (
+                <AiChatMessage key={id} content={content} />
+              )
+            )
           )}
         </ConversationContent>
         <ConversationScrollButton />
