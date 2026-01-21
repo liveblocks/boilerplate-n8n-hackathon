@@ -4,8 +4,12 @@ This repo is a demo chat application that allows you to use Liveblocks agents se
 
 https://github.com/user-attachments/assets/c3f0618d-302b-48ff-a2a2-989134772cb4
 
-> [!TIP]
-> Node 22.16-24.X is required. It's easy to [switch versions with nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#intro).
+## Set up Node.js 
+
+**A Node.js version between 22.16-24.X is required.**
+
+- If you don't already have Node.js installed, make sure to [install v24 from the website](https://nodejs.org/en/download).
+- If you already have Node.js installed, make sure to use 22.16-24.X. It's easy to [switch versions with nvm](https://github.com/nvm-sh/nvm?tab=readme-ov-file#intro).
 
 ## Clone this repo
 
@@ -38,8 +42,8 @@ npm install -g n8n
 ```
 
 2. Go to http://localhost:5678/ + sign up. If you don't see a sign up page, run `n8n user-management:reset`.
-3. Stop n8n (cmd+c).
-4. Set up Liveblocks N8N nodes.
+3. Stop n8n (cmd+c / ctrl+c).
+4. Download and install the custom Liveblocks n8n nodes.
 
 ```bash
 cd ~/.n8n
@@ -68,7 +72,7 @@ n8n start
 
 1. Download the `n8n-chat-workflow.json` file in this repo.
 2. In n8n, go to the [Overview page](http://localhost:5678/home/workflows) and hit “Create Workflow” in the top-right
-3. Open the menu at the top-right and import the `n8n-chat-workflow.json` file.
+3. Open the menu at the top-right and import the `n8n-chat-workflow.json` file, found at the root of this project.
 
 <img width="1028" height="848" alt="CleanShot 2026-01-21 at 14 10 51@2x" src="https://github.com/user-attachments/assets/99f87388-f610-43ac-b75b-b7b5ecf9b12f" />
 
@@ -101,8 +105,3 @@ https://github.com/user-attachments/assets/4016d486-167a-4627-8b1e-a6ba7e50c137
 - If you need to tunnel for Webhooks, use ngrok or 
 `npx localtunnel --port 5678`
 
-## Modifying
-
-Add or modify nodes in the n8n-nodes/nodes folder
-
-Modify API (from dev) endpoint in /utils/consts.ts
