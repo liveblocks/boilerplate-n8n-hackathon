@@ -120,7 +120,13 @@ N8N_WEBHOOK_URL=http://localhost:5678/webhook/...
 
 6. You can now use your AI chat!
 
-7. Extend your app! Add more nodes, link up to Google Calendar, Linear, Notion, and more.
+https://github.com/user-attachments/assets/065ad805-15e0-4f23-b2d4-dc3ed7e40f4e
+
+7. Extend your app! Add more nodes, link up to various apps, for example:
+ - Read events from your Google Calendar and answer questions.
+ - Create new issues on Linear, and link to them.
+ - Generate documents on Notion, and suggest further changes.
+ ...and much more!
 
 ## Troubleshooting
 
