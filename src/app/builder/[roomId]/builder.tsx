@@ -107,7 +107,7 @@ export function Builder() {
             >
               {blockIds.length === 0 ? (
                 <div className="w-full h-full flex items-center justify-center italic text-muted-foreground">
-                  Click "Add block" to get started
+                  Click &quot;Add block&quot; to get started
                 </div>
               ) : (
                 blockIds.map((blockId) => (

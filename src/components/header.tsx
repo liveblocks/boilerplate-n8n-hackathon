@@ -76,6 +76,7 @@ export function Header() {
                 <SelectContent>
                   {users.map((user) => (
                     <SelectItem key={user.id} value={user.id}>
+                      {/* eslint-disable-next-line @next/next/no-img-element -- user avatar from dynamic source */}
                       <img
                         src={user.info.avatar}
                         alt={user.info.name}

@@ -49,7 +49,7 @@ export function useStorageStore({
 
   useEffect(() => {
     const unsubs: (() => void)[] = [];
-    setStoreWithStatus({ status: "loading" });
+    // State is already initialized to "loading", no need to set it again
 
     async function setup() {
       // Get Liveblocks Storage values
@@ -277,7 +277,7 @@ export function useStorageStore({
       unsubs.forEach((fn) => fn());
       unsubs.length = 0;
     };
-  }, [room, store]);
+  }, [room, store, user]);
 
   return storeWithStatus;
 }
