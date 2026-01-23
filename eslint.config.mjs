@@ -6,8 +6,8 @@ const config = [
   prettierConfig,
   {
     rules: {
-      // These rules are overly strict for common React patterns used in this codebase
-      "react-hooks/set-state-in-effect": "warn",
+      // This rule flags useMemo-wrapped motion.create() as creating components during render,
+      // but useMemo ensures the component is stable across renders. Keep as warning.
       "react-hooks/static-components": "warn",
     },
   },
