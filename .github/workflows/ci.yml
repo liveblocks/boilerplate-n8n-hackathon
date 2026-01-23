@@ -25,7 +25,12 @@ jobs:
         run: npm ci
 
       - name: Run ESLint
-        run: npx next lint --dir .
+        run: npx eslint .
 
       - name: Run TypeScript type check
         run: npx tsc --noEmit
+
+      - name: Build application
+        env:
+          LIVEBLOCKS_SECRET_KEY: sk_dev_fake_key_for_ci_build
+        run: npm run build
